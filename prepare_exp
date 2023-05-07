@@ -1,0 +1,23 @@
+#!/bin/bash
+
+d="$1_$(date +'%Y-%m-%d')"
+d1="$(pwd)/$1"
+d2="$(pwd)/$d"
+
+mkdir $d
+
+cd $d
+
+i=$2
+while [[ $i -le $3 ]]; do
+  mkdir "${i}"
+  cp $d1 "$d2/$i" 
+  cd "$d2/$i"
+  echo "#!/bin/bash" >> run.sh
+#  echo "mpiexec -n 1 $1 $i $i" >> run.sh
+  echo "./$1 $i" >> run.sh
+  chmod +x run.sh
+  cd .. 
+  ((i+=$4))
+done
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+d="$1_$(date +'%Y-%m-%d')"
+d1="$(pwd)/$d"
+rm -r "$d1"
